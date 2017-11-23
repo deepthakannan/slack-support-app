@@ -1,0 +1,94 @@
+.App {
+  text-align: center;
+  color: rgb(31, 31, 95);
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.App-logo {
+  float: left;
+  animation: App-logo-spin infinite 20s linear;
+  height: 30px;
+}
+
+h1 {
+  margin: 0px
+}
+
+.align-text-center {
+  text-align: center;
+}
+
+.App-header {
+  height: 30px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  float: left;
+  font-size: 1.2em;
+}
+
+.App-intro {
+  font-size: medium;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.app-body
+{
+  margin: 0px 50px;
+  border-radius: 1px;
+}
+
+.leftpane {
+  padding: 20px;
+  width: 20%;
+  float: left;
+  margin: 5px;
+  background-color: white;
+  border-collapse: collapse;
+  text-align: left
+}
+
+.middlepane {
+  padding: 20px;
+  width: 20%;
+  float: left;
+  margin: 5px;
+  background-color: white;
+  border-collapse: collapse;
+  text-align: left
+}
+
+.rightpane {
+  padding: 20px;
+float: left;
+width: 50%;
+margin: 5px;
+background-color: white;
+border-collapse: collapse;
+text-align: center
+}
+
+td {
+  min-width:100px;
+  min-height:100px;
+  align-content: center;
+  align-items: center;
+  border: 1px;
+  border-style: solid;
+  border-color: rgb(54, 94, 160);
+  padding: 5px;
+  background-color: rgb(54, 94, 160);
+  border-radius: 5px;
+  color: white
+}
+
+
+tr {
+  min-height: 100px
+}

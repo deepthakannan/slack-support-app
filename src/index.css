@@ -1,0 +1,17 @@
+html {
+  height: 100%
+}
+
+body {
+  height: 100%;
+  background:rgb(54, 94, 160);
+  color:#000000;
+  direction:ltr;
+  line-height:1.34;
+  margin:0;
+  padding:0;
+}
+
+div {
+  height: 100%;
+}
