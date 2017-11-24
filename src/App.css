@@ -10,12 +10,28 @@
   height: 30px;
 }
 
+.selected {
+  font-style: italic;
+  background-color: greenyellow;
+  color: rgb(54, 94, 160);
+}
+
+.unselected {
+  font-style: normal;
+  background-color: rgb(54, 94, 160);
+  color: white;
+}
+
 h1 {
   margin: 0px
 }
 
 .align-text-center {
   text-align: center;
+}
+
+table {
+  align:"center"
 }
 
 .App-header {
@@ -46,7 +62,7 @@ h1 {
 
 .leftpane {
   padding: 20px;
-  width: 20%;
+  width: 10%;
   float: left;
   margin: 5px;
   background-color: white;
@@ -56,7 +72,7 @@ h1 {
 
 .middlepane {
   padding: 20px;
-  width: 20%;
+  width: 10%;
   float: left;
   margin: 5px;
   background-color: white;
@@ -67,7 +83,7 @@ h1 {
 .rightpane {
   padding: 20px;
 float: left;
-width: 50%;
+width: 70%;
 margin: 5px;
 background-color: white;
 border-collapse: collapse;
@@ -75,7 +91,7 @@ text-align: center
 }
 
 td {
-  min-width:100px;
+  min-width:140px;
   min-height:100px;
   align-content: center;
   align-items: center;

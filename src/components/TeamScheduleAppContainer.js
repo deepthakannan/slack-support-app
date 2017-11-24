@@ -7,7 +7,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTeam: null
+      currentTeam: null,
+      teamScheduleData: null
     };
   }
 
@@ -16,6 +17,10 @@ class App extends Component {
       currentTeam: team
     });
   };
+
+  saveSchedules = () => {
+    
+  }
 
   render() {
     return (
@@ -37,7 +42,7 @@ class App extends Component {
         <div className="rightpane">
           <div className="centerAlign">
             <h3 className="align-text-center">Schedules</h3>
-            <Schedules teamClicked={this.handleTeamchange} />
+            <Schedules saveHandler={(data) => this.saveSchedules(data)} team={this.state.currentTeam}/>
           </div>
         </div>
       </div>
