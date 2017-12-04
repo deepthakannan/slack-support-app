@@ -29,25 +29,33 @@ module.exports = class TeamDetails extends React.Component {
   };
 
   componentWillReceiveProps = nextProps => {
-    if (nextProps && nextProps.team) {
+    if (nextProps && nextProps.team != this.props.team) {
       this.refreshMembers(nextProps.team.name);
     }
   };
 
-  shouldComponentUpdate = (nextProps, nextState) => {
-    return nextProps.team != this.props.team;
+  memberClick = (selectedMember) => {
+    this.setState({
+      selectedMember: selectedMember
+    })
+    this.props.memberClicked(selectedMember);
   };
 
-  memberClick = member => {
-    this.setState({
-      selectedMember: member
-    });
+  shouldComponentUpdate = (nextProps, nextState) => {
+    return (nextProps.team != this.props.team) || (nextState.selectedMember != this.state.selectedMember);
   };
+
+  isSameMember(memberA, memberB) {
+    if(!memberA || !memberB) {
+      return false;
+    }
+    return memberA.name == memberB.name;
+  }
 
   getMemberRow(member) {
     return (
       <tr key={member.name} onClick={() => this.memberClick(member)}>
-        <td>{member.name}</td>
+        <td className={this.isSameMember(this.state.selectedMember, member) ? "selected" : "unselected"}>{member.name}</td>
       </tr>
     );
   }

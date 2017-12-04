@@ -8,6 +8,7 @@ class App extends Component {
     super(props);
     this.state = {
       currentTeam: null,
+      currentMember: null,
       teamScheduleData: null
     };
   }
@@ -15,6 +16,12 @@ class App extends Component {
   handleTeamSelectionChange = team => {
     this.setState({
       currentTeam: team
+    });
+  };
+
+  handleMemberSelectionChange = member => {
+    this.setState({
+      currentMember: member
     });
   };
 
@@ -36,13 +43,13 @@ class App extends Component {
         <div className="middlepane">
           <div className="centerAlign">
             <h3 className="align-text-center">TeamDetails</h3>
-            <TeamDetails team={this.state.currentTeam} />
+            <TeamDetails team={this.state.currentTeam} memberClicked={(member) => this.handleMemberSelectionChange(member)} />
           </div>
         </div>
         <div className="rightpane">
           <div className="centerAlign">
             <h3 className="align-text-center">Schedules</h3>
-            <Schedules saveHandler={(data) => this.saveSchedules(data)} team={this.state.currentTeam}/>
+            <Schedules saveHandler={(data) => this.saveSchedules(data)} team={this.state.currentTeam} member={this.state.currentMember}/>
           </div>
         </div>
       </div>

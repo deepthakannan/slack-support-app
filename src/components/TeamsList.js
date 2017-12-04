@@ -1,40 +1,6 @@
 var React = require("react");
 var httpService = require("../services/SupportService");
 
-class CheckedTableData extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      styleClass: "unselected"
-    }
-  }
-  onCheckChanged = (e) => {
-    if(e.target.checked) {
-      this.props.teamClicked(this.props.team);
-      this.setState({
-          styleClass: "selected"
-        }
-      )
-    }
-    else {
-      this.setState({
-          styleClass: "unselected"
-        }
-      )
-    }
-    
-  };
-
-  render() {
-    return (
-      <td>
-        <input type="radio" name="teams" value={this.props.team} onChange={(e)=> this.onCheckChanged(e)}></input>
-        <label className={this.state.styleClass} >{this.props.team.name}</label>
-      </td>
-    )
-  }
-}
-
 module.exports = class TeamList extends React.Component {
   constructor(props) {
     super(props);
@@ -58,10 +24,17 @@ module.exports = class TeamList extends React.Component {
     this.props.teamClicked(selectedTeam);
   };
 
+  isSameTeam(teamA, teamB) {
+    if(!teamA || !teamB) {
+      return false;
+    }
+    return teamA.name == teamB.name;
+  }
+
   getTeamRow(team) {
     return (
       <tr key={team.name} onClick={() => this.onTeamClick(team)}>
-        <td className={this.state.selectedTeam == team ? "selected" : "unselected"}>{team.name}</td>
+        <td className={this.isSameTeam(this.state.selectedTeam, team) ? "selected" : "unselected"}>{team.name}</td>
       </tr>
     );
   }

@@ -1,6 +1,6 @@
 var  _ = require("lodash");
 class SupportService {
-  getTeams = () => {
+  getTeams  () {
     return [
       {
         name: "Team 404"
@@ -14,7 +14,7 @@ class SupportService {
     ];
   };
 
-  getMembers = teamName => {
+  getMembers(teamName) {
     if (teamName == "Team 404") { 
         return [
             {
@@ -41,35 +41,30 @@ class SupportService {
     
   };
 
-  getCurrentSchedule = teamName => {
-    if (teamName == "Team 404") {
-      return [
-        {
+  getCurrentSchedule(teamName, startDate, noOfDays) {
+    var tempStartDate = null;
+    var schedule = [];
+    for(var dayIndex = 0; dayIndex < noOfDays; dayIndex++) {
+      tempStartDate = new Date(startDate);
+      let date = new Date(tempStartDate.setDate(startDate.getDate() + dayIndex));
+      schedule.push({
+        day: date,
+        schedules: [{
           from: new Date(),
           to: new Date(),
-          name: "Deeptha kannan"
-        },
-        {
-          from: new Date(),
-          to: new Date(),
-          name: "Vaidya"
-        },
-        {
-          from: new Date(),
-          to: new Date(),
-          name: "Kranthi Nuthi"
+          members: [
+            {
+              name: "Deeptha",
+              id: 5
+            }
+          ] 
         }
-      ];
-    } else {
-      return _.range(0, 3, 1).map(value => {
-        return {
-          from: new Date(),
-          to: new Date(),
-          name: "Member " + value
-        };
+          
+        ]
       });
     }
-  };
+    return schedule;
+  }
 }
 
 module.exports = new SupportService();
