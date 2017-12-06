@@ -23,17 +23,17 @@ module.exports = class Schedules extends React.Component {
 
   assignCurrentMember(hourData, day) {
     if(this.props.member) {
-      var index = hourData.members.indexOf(this.props.member);
-      if (index < 0) {
-        hourData.members.push(this.props.member);
-      }
+      hourData.member = this.props.member;
     }
+    this.setState({
+      schedule: this.state.schedule
+    });
   }
 
   getWeekRowData(hourData) {
     let timeSchdules = this.state.schedule.map(day => {
       let scheduleHourData = day.hours[hourData.hour];
-      return <td key={day.date.getDay()} onClick={()=>this.assignCurrentMember(scheduleHourData, day.date)}> <TimeSchedule onHourScheduleClicked={()=>this.assignCurrentMember(scheduleHourData, day.date)} day={day.date} className={"timeSchedule"} hourData={scheduleHourData}> </TimeSchedule> </td>;
+      return <td key={day.date.getDay()} onClick={()=>this.assignCurrentMember(scheduleHourData, day.date)}> <TimeSchedule key={day.date.getDay()} onHourScheduleClicked={()=>this.assignCurrentMember(scheduleHourData, day.date)} day={day.date} className={"timeSchedule"} hourData={scheduleHourData}> </TimeSchedule> </td>;
     });
     return timeSchdules;
   }
@@ -80,10 +80,7 @@ module.exports = class Schedules extends React.Component {
         hours: _.range(0, 24, 1).map(hour => {
           return {
             hour: hour,
-            members: [{
-              name: "Deeptha",
-              id: 8
-            }]
+            member: null
           }
         })
       })
