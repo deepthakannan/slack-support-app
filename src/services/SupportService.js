@@ -50,16 +50,13 @@ class SupportService {
       schedule.push({
         day: date,
         schedules: [{
-          from: new Date(),
-          to: new Date(),
-          members: [
+          from: null,
+          to: null,
+          member:
             {
-              name: "Deeptha",
-              id: 5
+              id: dayIndex
             }
-          ] 
         }
-          
         ]
       });
     }

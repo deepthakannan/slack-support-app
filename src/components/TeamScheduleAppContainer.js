@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TeamList from "./TeamsList";
 import TeamDetails from "./TeamDetails";
 import Schedules from "./Schedules";
+import Popup from "./Popup";
 
 class App extends Component {
   constructor(props) {
@@ -29,20 +30,28 @@ class App extends Component {
     
   }
 
+  addNewGroup() {
+    Popup.Show("New Team");
+  }
+
+  addNewMember() {
+    Popup.Show("New Member");
+  }
+
   render() {
     return (
       <div>
         <div className="leftpane">
           <div className="centerAlign">
-            <h3 className="align-text-center">Teams</h3>
-            <TeamList
-              teamClicked={team => this.handleTeamSelectionChange(team)}
+          <span><h3 className="align-text-center">Teams</h3><button onClick={()=>this.addNewGroup()}>+</button></span>
+            
+            <TeamList teamClicked={team => this.handleTeamSelectionChange(team)}
             />
           </div>
         </div>
         <div className="middlepane">
           <div className="centerAlign">
-            <h3 className="align-text-center">TeamDetails</h3>
+          <span><h3 className="align-text-center">Team Details</h3><button onClick={()=>this.addNewMember()}>+</button></span>
             <TeamDetails team={this.state.currentTeam} memberClicked={(member) => this.handleMemberSelectionChange(member)} />
           </div>
         </div>
