@@ -30,6 +30,8 @@
   left: 0;
   top: 0;
   width: 100%; /* Full width */
+  min-height: 10%;
+  min-width: 30%;
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
@@ -41,7 +43,7 @@
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 50%;
 }
 
 h1 {

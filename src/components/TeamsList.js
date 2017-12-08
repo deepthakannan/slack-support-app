@@ -12,9 +12,11 @@ module.exports = class TeamList extends React.Component {
   }
 
   componentWillMount = () => {
-    this.setState({
-      teams: httpService.getTeams()
-    });
+      httpService.getTeams().then((teams) => {
+        this.setState({
+          teams: teams
+        });
+      });
   };
 
   onTeamClick = selectedTeam => {

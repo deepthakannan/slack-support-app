@@ -1,18 +1,20 @@
 var  _ = require("lodash");
 class SupportService {
   getTeams  () {
-    return [
-      {
-        name: "Team 404"
-      },
-      {
-        name: "Team Cirrus"
-      },
-      {
-        name: "X-Curl"
-      }
-    ];
-  };
+    return new Promise((resolve, reject)=>{
+      resolve([
+        {
+          name: "Team 404"
+        },
+        {
+          name: "Team Cirrus"
+        },
+        {
+          name: "X-Curl"
+        }
+      ]);
+    }); 
+  }
 
   getMembers(teamName) {
     if (teamName == "Team 404") { 

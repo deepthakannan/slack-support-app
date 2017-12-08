@@ -73,18 +73,18 @@ module.exports = class TeamDetails extends React.Component {
       <p>
         {" "}
         {this.canDisplayHelpText()
-          ? "Select a memeber to configure support schedule"
+          ? "Select a member to configure support schedule"
           : ""}
       </p>
     );
     return (
-      <div>
-        {helpText}
-        <table>
+      <div className="centerAlign">
+        <table align="center" className="centerAlign">
           <tbody>
             {this.state.members.map(member => this.getMemberRow(member))}
           </tbody>
         </table>
+        {helpText}
       </div>
     );
   };
