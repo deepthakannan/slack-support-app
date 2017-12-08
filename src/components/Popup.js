@@ -22,9 +22,9 @@ class Popup extends React.Component {
         this.state = {show:true};
     }
 
-    componentWillReceiveProps() {
+    componentWillReceiveProps(nextProps) {
         this.setState({
-            show:true 
+            show: nextProps.children ? true : false
         })
     }
 
@@ -50,6 +50,10 @@ class Popup extends React.Component {
 module.exports = {
     Show: function(children, actions) {
         ReactDOM.render(<Popup children={children}  />, document.getElementById('popup-root'));
+    },
+
+    hide: function() {
+        ReactDOM.render(<Popup children={null}  />, document.getElementById('popup-root'));
     }
 } 
 

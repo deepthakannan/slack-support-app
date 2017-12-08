@@ -1,18 +1,34 @@
 var  _ = require("lodash");
+
+var teams = [
+  {
+    name: "Team 404"
+  },
+  {
+    name: "Team Cirrus"
+  },
+  {
+    name: "X-Curl"
+  }
+];
 class SupportService {
   getTeams  () {
     return new Promise((resolve, reject)=>{
-      resolve([
-        {
-          name: "Team 404"
-        },
-        {
-          name: "Team Cirrus"
-        },
-        {
-          name: "X-Curl"
+      resolve(teams);
+    }); 
+  }
+
+  addNewTeam(team) {
+    return new Promise((resolve, reject)=>{
+      //setTimeout(function(){
+        let randInt = Math.floor((Math.random() * 100));
+        if(randInt % 2 == 0) {
+          teams.push(team);
+          resolve(team);
+        } else {
+          reject("Error occurred saving name")
         }
-      ]);
+      //}.bind(this), 1000);
     }); 
   }
 

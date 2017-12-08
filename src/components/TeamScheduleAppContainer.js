@@ -3,6 +3,7 @@ import TeamList from "./TeamsList";
 import TeamDetails from "./TeamDetails";
 import Schedules from "./Schedules";
 import Popup from "./Popup";
+import NewTeamForm  from "./NewTeamForm";
 
 class App extends Component {
   constructor(props) {
@@ -28,13 +29,20 @@ class App extends Component {
 
   saveSchedules = () => {
     
+  };
+
+  teamCreated = (team) => {
+    Popup.hide();
+    this.setState({
+      currentTeam: team
+    });
+  };
+
+  addNewGroup = () => {
+    Popup.Show(<NewTeamForm teamCreated={(team)=>this.teamCreated(team)} cancel={()=>Popup.hide()}></NewTeamForm>);
   }
 
-  addNewGroup() {
-    Popup.Show("New Team");
-  }
-
-  addNewMember() {
+  addNewMember = () => {
     Popup.Show("New Member");
   }
 
