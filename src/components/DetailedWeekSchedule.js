@@ -3,7 +3,7 @@ var httpService = require("../services/SupportService");
 var TimeSchedule = require("./TimeSchedule");
 var _ = require("lodash");
 
-module.exports = class Schedules extends React.Component {
+module.exports = class DetailedWeekSchedule extends React.Component {
   constructor(props) {
     super(props);
     this.days = [

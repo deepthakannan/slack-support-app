@@ -1,6 +1,6 @@
 var React = require("react");
 var httpService = require("../services/SupportService");
-var WeekSchedule = require("./WeekSchedule");
+var DetailedWeekSchedule = require("./DetailedWeekSchedule");
 var _ = require("lodash");
 
 module.exports = class Schedules extends React.Component {
@@ -23,7 +23,7 @@ module.exports = class Schedules extends React.Component {
 
         </div>
         <div className={"schedule"}>
-          <WeekSchedule member={this.props.member} startDate={new Date()}></WeekSchedule>
+          <DetailedWeekSchedule member={this.props.member} startDate={new Date()}></DetailedWeekSchedule>
         </div>
       </div>
     );
