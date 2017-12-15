@@ -60,25 +60,27 @@ class SupportService {
   };
 
   getCurrentSchedule(teamName, startDate, noOfDays) {
-    var tempStartDate = null;
-    var schedule = [];
-    for(var dayIndex = 0; dayIndex < noOfDays; dayIndex++) {
-      tempStartDate = new Date(startDate);
-      let date = new Date(tempStartDate.setDate(startDate.getDate() + dayIndex));
-      schedule.push({
-        day: date,
-        schedules: [{
-          from: null,
-          to: null,
-          member:
-            {
-              id: dayIndex
-            }
-        }
-        ]
-      });
-    }
-    return schedule;
+    return new Promise(function(resolve, reject) {
+      var tempStartDate = null;
+      var schedule = [];
+      for(var dayIndex = 0; dayIndex < noOfDays; dayIndex++) {
+        tempStartDate = new Date(startDate);
+        let date = new Date(tempStartDate.setDate(startDate.getDate() + dayIndex));
+        schedule.push({
+          day: date,
+          schedules: [{
+            from: null,
+            to: null,
+            member:
+              {
+                id: dayIndex
+              }
+          }
+          ]
+        });
+      }
+      resolve(schedule);
+    });
   }
 }
 

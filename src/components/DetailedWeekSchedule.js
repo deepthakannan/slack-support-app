@@ -15,10 +15,12 @@ module.exports = class DetailedWeekSchedule extends React.Component {
       "Saturday",
       "Sunday"
     ];
-    var schedule = httpService.getCurrentSchedule(props.teamName, props.startDate, 7);
-    this.state = {
-      schedule: this.generateScheduleTableData(schedule)
-    }
+    var schedule = httpService.getCurrentSchedule(props.teamName, props.startDate, 7).then(schedule => {
+      this.state = {
+        schedule: this.generateScheduleTableData(schedule)
+      }
+    });
+    
   }
 
   assignCurrentMember(hourData, day) {
