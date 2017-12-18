@@ -11,6 +11,40 @@ var teams = [
     name: "X-Curl"
   }
 ];
+
+var getTeamMembers = () => {
+  return [
+    {
+      name: "Deeptha kannan",
+      id: 1
+    },
+    {
+      name: "Vaidya Chandrasekhar",
+      id: 2
+    },
+    {
+      name: "Kranthi Nuthi",
+      id: 3
+    },
+    {
+      name: "Emily Somma",
+      id: 4
+    },
+    {
+      name: "Nick Pomeroy",
+      id: 5
+    },
+    {
+      name: "Ian Mckay",
+      id: 6
+    },
+    {
+      name: "Poorva Kuber",
+      id: 7
+    }
+  ]
+}
+
 class SupportService {
   getTeams  () {
     return new Promise((resolve, reject)=>{
@@ -33,30 +67,19 @@ class SupportService {
   }
 
   getMembers(teamName) {
-    if (teamName == "Team 404") { 
-        return [
-            {
-              name: "Deeptha kannan",
-              id: 1
-            },
-            {
-              name: "Vaidya",
-              id: 2
-            },
-            {
-              name: "Kranthi Nuthi",
-              id: 3
-            }
-          ];
+    return new Promise(function(resolve, reject) {
+      if (teamName == "Team 404") { 
+        resolve(getTeamMembers());
     } else {
-        return _.range(4, 10, 1).map(value => {
-          return {
-            name: "Member " + value,
-            id: value
-          };
-        });
+      let members = _.range(4, 10, 1).map(value => {
+        return {
+          name: "Member " + value,
+          id: value
+        };
+      });
+      resolve(members);
       }
-    
+    });
   };
 
   getCurrentSchedule(teamName, startDate, noOfDays) {
@@ -73,7 +96,8 @@ class SupportService {
             to: null,
             member:
               {
-                id: dayIndex
+                id: dayIndex + 1,
+                name: getTeamMembers()[dayIndex].name
               }
           }
           ]
