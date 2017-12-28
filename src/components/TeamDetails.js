@@ -21,11 +21,13 @@ module.exports = class TeamDetails extends React.Component {
   };
 
   refreshMembers = teamName => {
-    var members = httpService.getMembers(teamName);
-    this.setState({
-      members: members,
-      selectedMember: null
+    httpService.getMembers(teamName).then(members => {
+      this.setState({
+        members: members,
+        selectedMember: null
+      });
     });
+    
   };
 
   componentWillReceiveProps = nextProps => {

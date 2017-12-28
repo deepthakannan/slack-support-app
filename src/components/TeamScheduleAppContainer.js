@@ -57,8 +57,8 @@ class App extends Component {
             />
           </div>
         </div>
-        <div className="middlepane">
-          <div className="centerAlign">
+        <div className="middlepane" style={{'display': 'none'}}>
+          <div className="centerAlign" >
           <span><h3 className="align-text-center">Team Details</h3><button onClick={()=>this.addNewMember()}>+</button></span>
             <TeamDetails team={this.state.currentTeam} memberClicked={(member) => this.handleMemberSelectionChange(member)} />
           </div>
@@ -66,7 +66,7 @@ class App extends Component {
         <div className="rightpane">
           <div className="centerAlign">
             <h3 className="align-text-center">Schedules</h3>
-            <Schedules saveHandler={(data) => this.saveSchedules(data)} team={this.state.currentTeam} member={this.state.currentMember}/>
+            <Schedules saveHandler={(data) => this.saveSchedules(data)} team={this.state.currentTeam} member={this.state.currentMember} />
           </div>
         </div>
       </div>
