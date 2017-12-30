@@ -1,3 +1,4 @@
+var _ = require("lodash");
 class Members {
   constructor(storage) {
     this.storage = storage;
@@ -10,7 +11,13 @@ class Members {
   }
 
   getMembers(req, res, next) {
-    res.send(this.storage.members[0].members);
+    let teamMembers = _.find(this.storage.members, teamMember => teamMember.team == req.query.teamName);
+    if(teamMembers) {
+      res.send(teamMembers.members);
+    } else  {
+      res.send([]);
+    }
+    
   }
 }
 

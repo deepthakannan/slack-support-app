@@ -35,7 +35,7 @@ module.exports = class WeekDaySchedules extends React.Component {
   }
 
   refreshSchedules(team, members, startDate) {
-    httpService.getCurrentSchedule(team.teamName, startDate, 7).then(currentSchedule => {
+    httpService.getCurrentSchedule(team.name, startDate, 7).then(currentSchedule => {
       this.setState({
         schedule: currentSchedule,
         members: members,

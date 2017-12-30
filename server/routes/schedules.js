@@ -1,3 +1,4 @@
+var _ = require("lodash");
 class Schedules {
   constructor(storage) {
     this.storage = storage;
@@ -10,6 +11,7 @@ class Schedules {
   }
 
   getTeamSchedule(req, res, next) {
+    let teamMembers = _.find(this.storage.members, teamMember => teamMember.team == req.query.teamName);
     let noOfDays = 7;
     let startDate = new Date();
     var tempStartDate = null;
@@ -25,7 +27,7 @@ class Schedules {
           member:
             {
               id: dayIndex + 1,
-              name: this.storage.members[0].members[dayIndex].name
+              name: teamMembers && teamMembers.members.length > dayIndex ? teamMembers.members[dayIndex].name : null
             }
         }
         ]
