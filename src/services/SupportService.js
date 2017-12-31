@@ -31,6 +31,10 @@ class SupportService {
     }
     return rp(supportServiceUrl + "schedules/" + teamName, {qs: query, json: true });
   }
+
+  updateSchedule(teamName, schedules) {
+    return rp.put(supportServiceUrl + "schedules/" + teamName, {body: schedules, json: true });
+  }
 }
 
 module.exports = new SupportService();
