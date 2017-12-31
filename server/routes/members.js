@@ -6,12 +6,12 @@ class Members {
 
   initializeRoutes(express) {
     let router = express.Router();
-    router.get('/', (req, res, next) => this.getMembers(req, res, next));
+    router.get('/:teamName', (req, res, next) => this.getMembers(req, res, next));
     return router;
   }
 
   getMembers(req, res, next) {
-    let teamMembers = _.find(this.storage.members, teamMember => teamMember.team == req.query.teamName);
+    let teamMembers = this.storage.getMembers(req.params.teamName)
     if(teamMembers) {
       res.send(teamMembers.members);
     } else  {

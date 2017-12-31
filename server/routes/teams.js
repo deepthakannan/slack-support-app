@@ -11,7 +11,7 @@ class Teams {
   }
 
   getTeams(req, res, next){
-    res.send(this.storage.teams);
+    res.send(this.storage.getTeams());
   }
 
   createNewTeam(req, res, next){

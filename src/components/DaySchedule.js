@@ -65,7 +65,7 @@ module.exports = class DaySchedule extends React.Component {
                   }
                   {
                     !showEditMember && 
-                    <button style={{ "borderWidth": "thin", background: "yellow"}} onClick={(e) => this.changeSupport(e)}>{fullDaySchedule.member.name}</button> 
+                    <button style={{ "borderWidth": "thin", background: "yellow"}} onClick={(e) => this.changeSupport(e)}>{_.find(this.props.members, member => member.id == fullDaySchedule.member.id).name}</button> 
                   }
               </div>
             )
