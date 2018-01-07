@@ -1,0 +1,5 @@
+CREATE TABLE Team (
+    Id BIGINT NOT NULL PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL,
+    OrganizationId BIGINT FOREIGN KEY REFERENCES Organization(Id)
+);

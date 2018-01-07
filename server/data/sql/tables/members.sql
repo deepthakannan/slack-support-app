@@ -1,0 +1,5 @@
+CREATE TABLE Member (
+    Id BIGINT NOT NULL PRIMARY KEY,
+    Name VARCHAR(255),
+    OrganizationId BIGINT FOREIGN KEY REFERENCES Organization(Id)
+);

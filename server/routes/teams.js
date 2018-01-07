@@ -11,7 +11,11 @@ class Teams {
   }
 
   getTeams(req, res, next){
-    res.send(this.storage.teams);
+    this.storage.getTeams().then(results => {
+      res.send(results);
+    }).catch(err => {
+      res.status(500).send(err);
+    });
   }
 
   createNewTeam(req, res, next){
