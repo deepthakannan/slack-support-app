@@ -21,11 +21,19 @@ class SupportService {
   }
 
   getMembers(teamName) {
-    return rp(supportServiceUrl + "members", {json: true});
+    return rp(supportServiceUrl + "members/" + teamName, {json: true});
   };
 
   getCurrentSchedule(teamName, startDate, noOfDays) {
-    return rp(supportServiceUrl + "schedules", {qs: { startDate: startDate }, json: true });
+    let query = {
+      'startDate': startDate,
+      'noOfDays': noOfDays
+    }
+    return rp(supportServiceUrl + "schedules/" + teamName, {qs: query, json: true });
+  }
+
+  updateSchedule(teamName, schedules) {
+    return rp.put(supportServiceUrl + "schedules/" + teamName, {body: schedules, json: true });
   }
 }
 

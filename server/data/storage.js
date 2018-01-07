@@ -36,7 +36,7 @@ class Storage {
             .query('select * from Team where OrganizationId = @OrganizationId'); 
     }
 
-    getMembers(teamId) {
+    getMembersFromDb(teamId) {
         return sql.connect(this.config).then(pool => {
             return pool.request()
             .input('OrganizationId', sql.BigInt, 1)
@@ -48,6 +48,15 @@ class Storage {
             .query('select * from TeamMember JOIN Member on TeamMember.MemberId = Member.Id where TeamMember.TeamId = @teamId');
         });
     }
+
+    getMembers(teamName) {
+        return _.find(data.members, teamMember => teamMember.team == teamName);
+      }
+
+    getSchedules(startDate, noOfDays, teamName) {
+        let teamMembers = _.find(data.schedules, schedule => schedule.team == teamName);
+        return teamMembers.schedules;
+      }
 }
 
 module.exports = new Storage();

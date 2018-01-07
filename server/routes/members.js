@@ -1,3 +1,4 @@
+var _ = require("lodash");
 class Members {
   constructor(storage) {
     this.storage = storage;
@@ -5,12 +6,18 @@ class Members {
 
   initializeRoutes(express) {
     let router = express.Router();
-    router.get('/', (req, res, next) => this.getMembers(req, res, next));
+    router.get('/:teamName', (req, res, next) => this.getMembers(req, res, next));
     return router;
   }
 
   getMembers(req, res, next) {
-    res.send(this.storage.members[0].members);
+    let teamMembers = this.storage.getMembers(req.params.teamName)
+    if(teamMembers) {
+      res.send(teamMembers.members);
+    } else  {
+      res.send([]);
+    }
+    
   }
 }
 

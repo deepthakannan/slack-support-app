@@ -32,19 +32,39 @@ module.exports = class Schedules extends React.Component {
   }
 
   navigatePrevious = () => {
-    this.state.currentDate.setDate(this.state.currentDate.getDate() - 7),
-    this.setState({
-      schedule: null,
-      currentScheduleModified: false
-    })
+    if(this.state.currentScheduleModified) {
+      httpService.updateSchedule(this.props.team.name, this.state.schedule).then(schedules => {
+        this.state.currentDate.setDate(this.state.currentDate.getDate() - 7),
+        this.setState({
+          schedule: null,
+          currentScheduleModified: false
+        })
+      });
+    } else {
+      this.state.currentDate.setDate(this.state.currentDate.getDate() - 7),
+      this.setState({
+        schedule: null,
+        currentScheduleModified: false
+      })
+    }
   }
 
   navigateNext = () => {
-    this.state.currentDate.setDate(this.state.currentDate.getDate() + 7),
-    this.setState({
-      schedule: null,
-      currentScheduleModified: false
-    })
+    if(this.state.currentScheduleModified) {
+      httpService.updateSchedule(this.props.team.name, this.state.schedule).then(schedules => {
+        this.state.currentDate.setDate(this.state.currentDate.getDate() + 7),
+        this.setState({
+          schedule: null,
+          currentScheduleModified: false
+        })
+      });
+    } else {
+      this.state.currentDate.setDate(this.state.currentDate.getDate() + 7),
+      this.setState({
+        schedule: null,
+        currentScheduleModified: false
+      })
+    }
   }
 
   getDateKey(date) {
