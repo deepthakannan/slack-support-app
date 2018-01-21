@@ -30,16 +30,30 @@ class Storage {
         });
     }
 
-    getTeams() {
+    getTeams(organizationId) {
         return this.pool.request()
-            .input('OrganizationId', sql.BigInt, 1)
+            .input('OrganizationId', sql.BigInt, organizationId)
             .query('select * from Team where OrganizationId = @OrganizationId'); 
     }
 
-    getMembersFromDb(teamId) {
+    deleteTeam(organizationId, teamId) {
+        return this.pool.request()
+            .input('OrganizationId', sql.BigInt, organizationId)
+            .input('TeamId', sql.BigInt, teamId)
+            .query('delete from Team OUTPUT DELETED.* where OrganizationId = @OrganizationId AND Id = @TeamId'); 
+    }
+
+    insertTeam(organizationId, team) {
+        return this.pool.request()
+            .input('OrganizationId', sql.BigInt, organizationId)
+            .input('name', sql.VarChar, team.name)
+            .query('insert into Team (Name, OrganizationId) OUTPUT INSERTED.* values (@name, @OrganizationId)'); 
+    }
+
+    getMembersFromDb(teamId, organizationId) {
         return sql.connect(this.config).then(pool => {
             return pool.request()
-            .input('OrganizationId', sql.BigInt, 1)
+            .input('OrganizationId', sql.BigInt, organizationId)
             .input('Id', sql.BigInt, teamId)
             .query('select * from Team where OrganizationId = @OrganizationId AND Id = @Id');
         }).then(results => {
